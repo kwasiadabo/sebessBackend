@@ -5,7 +5,7 @@ const Joi = require('joi');
 const app = express();
 const fetch = require('node-fetch');
 
-const smsSenderId = 'TopFitGym';
+const smsSenderId = 'SEBESS';
 const smsUsername = 'adabo';
 const smsPswd = 'Kaw3se4dr5$$1';
 const swaggerUi = require('swagger-ui-express');
@@ -47,9 +47,10 @@ router.post('/smsresults', async (req, res) => {
 			method: 'GET',
 			redirect: 'follow',
 		};
+		console.log(i.phone_Number);
 
 		fetch(
-			`https://sms.nalosolutions.com/smsbackend/clientapi/Resl_Nalo/send-message/?username=${smsUsername}&password=${smsPswd}&type=0&destination=${x.phone_Number}&dlr=1&source=${smsSenderId}&message=${msg}`,
+			`https://sms.nalosolutions.com/smsbackend/clientapi/Resl_Nalo/send-message/?username=${smsUsername}&password=${smsPswd}&type=0&destination=${i.phone_Number}&dlr=1&source=${smsSenderId}&message=${msg}`,
 			requestOptions
 		)
 			.then((response) => response.text())
