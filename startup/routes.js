@@ -1,6 +1,5 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../swagger');
-const staff = require('../routes/staff');
 const facility = require('../routes/facility');
 const packages = require('../routes/package');
 const institutions = require('../routes/institution');
