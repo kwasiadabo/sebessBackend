@@ -18,8 +18,8 @@ const menus = require('../routes/menus');
 // const salarySetup = require('../routes/salarysetup')
 // const specialty = require('../routes/specialty')
 // const employee = require('../routes/employeeDetails')
-const Auth = require('../routes/auth');
-const LeaveAuth = require('../routes/leaveauth');
+// const Auth = require('../routes/auth');
+// const LeaveAuth = require('../routes/leaveauth');
 // const nationality = require('../routes/nationality')
 // const directorate = require('../routes/directorate')
 // const department = require('../routes/department')
@@ -46,10 +46,10 @@ module.exports = function (app) {
 	// app.use('/api/staff', staff)
 	// app.use('/api/nationality', nationality)
 	// app.use('/api/users', users)
-	app.use('/api/staff', staff);
+	//app.use('/api/staff', staff);
 	// app.use('/api/leaveplan', leavePlan)
 	// app.use('/api/auth', Auth)
-	app.use('/api/auth', Auth);
+	//app.use('/api/auth', Auth);
 	app.use('/api/facilities', facility);
 	app.use('/api/packages', packages);
 	app.use('/api/institutions', institutions);
