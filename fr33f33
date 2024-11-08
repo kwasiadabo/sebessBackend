@@ -1,0 +1,35 @@
+require("./startup/dbconfig");
+require("./startup/appVariables");
+
+const users = require("./functions/users");
+
+var express = require("express");
+var bodyParser = require("body-parser");
+var cors = require("cors");
+var app = express();
+var router = express.Router();
+
+router.use((request, response, next) => {
+  console.log("middleware");
+  next();
+});
+
+router.route("/allusers").get((request, response) => {
+  users.getAllUsers().then((result) => {
+    // console.log(result);
+    response.json(result[0]);
+  });
+});
+
+var port = process.env.PORT || 4000;
+app.listen(port);
+console.log("listening on port " + port);
+
+const appVariables = require("../startup/appvariables");
+var express = require("express");
+var app = express();
+
+appVariables.router.use((request, response, next) => {
+  console.log("middleware");
+  next();
+});

@@ -1,0 +1,89 @@
+const express = require("express");
+const app = express();
+
+require("./startup/dbconfig");
+require("./startup/routes")(app);
+
+var port = process.env.PORT || 4500;
+const server = app.listen(port);
+console.log("listening on port " + port);
+
+module.exports = server;
+
+var menuNew = [];
+
+var myMenus1 = [
+  {
+    menu_id: 1,
+    menu_label: "Administrator",
+    menu_order: "1",
+    menu_permitted: "Y",
+    menu_icon: null,
+    parent_id: null,
+  },
+  {
+    menu_id: 2,
+    menu_label: "Student Management",
+    menu_order: "2",
+    menu_permitted: "Y",
+    menu_icon: null,
+    parent_id: null,
+  },
+];
+var myMenus2 = [
+  {
+    menu_id: 3,
+    menu_label: "Setups",
+    menu_order: "1.1",
+    menu_permitted: "Y",
+    menu_icon: null,
+    parent_id: 1,
+  },
+];
+
+menuNew.level1 = myMenus1;
+
+//console.log(menuNew.level1.menu_icon);
+
+for (i = 0; i < myMenus1.length; i++) {
+  myMenus1.push(myMenus2);
+  //menuNew.level1[i].menu_icon = myMenus2;
+}
+
+// menuNew.level1.menu_icon = myMenus2;
+console.log(myMenus1);
+
+// const newJSON = { ...myMenus1, ...myMenus2 };
+
+//console.log(newJSON);
+
+// newMenu[0].menu_icon.push(...myMenus2);
+
+// var jsonL1 = { holder1: {} };
+// var jsonL2 = { section: "0 6", date: "11/12/13" };
+// jsonL1.holder1 = jsonL2;
+// console.log(jsonL1);
+
+// newMenu.menu_icon = myMenus2;
+// console.log(newMenu);
+
+var jsonObj = {
+  members: {
+    host: "hostName",
+    viewers: {
+      user1: "value1",
+      user2: "value2",
+      user3: "value3",
+    },
+  },
+};
+
+var i;
+
+for (i = 4; i <= 8; i++) {
+  var newUser = "user" + i;
+  var newValue = "value" + i;
+  jsonObj.members.viewers[newUser] = newValue;
+}
+
+console.log(jsonObj);

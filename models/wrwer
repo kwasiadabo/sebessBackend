@@ -1,0 +1,19 @@
+const sql = require("mssql");
+const dbconn = require("../startup/dbconfig");
+
+async function getMenus() {
+  try {
+    let pool = await sql.connect(dbconn);
+    let menusRequest = await pool
+      .request()
+      .query(
+        "select a.menu_id 'menu_id',a.menu_label,a.menu_order,a.menu_permitted,a.menu_icon,submenu_one = (select b.menu_id_one,b.menu_label_one,b.menu_order_one,b.menu_permitted_one,b.menu_icon_one,b.menu_parent_one,submenu_two = (select c.menu_id_two,c.menu_label_two,c.menu_order_two,	c.menu_permitted_two,c.menu_icon_two,c.menu_parent_two,submenu_three = (select d.menu_id_three,d.menu_label_three,d.menu_order_three,d.menu_permitted_three,d.menu_icon_three,d.menu_parent_three from tbl_SubMenus_Three d where c.menu_id_two=d.menu_parent_three	FOR JSON AUTO)from tbl_SubMenus_Two c where b.menu_id_one=c.menu_parent_two	FOR JSON AUTO ) from tbl_SubMenus_One b where a.menu_id=b.menu_parent_one  FOR JSON AUTO)from tbl_Menus a FOR JSON PATH, ROOT ('menu')"
+      );
+    console.log(menusRequest.recordsets);
+    return menusRequest.recordsets;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getMenus: getMenus };
