@@ -14,7 +14,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 router.post('/generalsms', async (req, res) => {
 	res.header('Access-Control-Allow-Origin', '*');
-	console.log(req.body);
+
 	const x = req.body;
 
 	const msgs = x.map((i) => {
@@ -47,7 +47,6 @@ router.post('/smsresults', async (req, res) => {
 			method: 'GET',
 			redirect: 'follow',
 		};
-		console.log(i.phone_Number);
 
 		fetch(
 			`https://sms.nalosolutions.com/smsbackend/clientapi/Resl_Nalo/send-message/?username=${smsUsername}&password=${smsPswd}&type=0&destination=${i.phone_Number}&dlr=1&source=${smsSenderId}&message=${msg}`,
@@ -93,7 +92,7 @@ router.get('/classes/:program', (request, response) => {
 });
 router.get('/student/:academicyear/:program/:classe', (request, response) => {
 	response.header('Access-Control-Allow-Origin', '*');
-	console.log(request.params);
+
 	const { academicyear, program, classe } = request.params;
 	smsFetch.getStudentsByYear(academicyear, program, classe).then((result) => {
 		response.json(result[0]);
@@ -123,7 +122,7 @@ router.get('/entire/:academicyear/:term/:program', (request, response) => {
 		});
 });
 
-router.get('/allStudents/:search', (request, response) => {
+router.get('/allStudents', (request, response) => {
 	response.header('Access-Control-Allow-Origin', '*');
 	const { search } = request.params;
 	smsFetch.loadStudents(search).then((result) => {

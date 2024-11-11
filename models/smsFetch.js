@@ -110,13 +110,10 @@ const getStudentsByYear = async (academicYear, program, classe) => {
 	}
 };
 
-const loadStudents = async (search) => {
+const loadStudents = async () => {
 	try {
 		let pool = await sql.connect(db);
-		let students = await pool
-			.request()
-			.input('psearch', sql.NVarChar, search)
-			.execute('uspGetStudents');
+		let students = await pool.request().execute('uspGetAllStudentforSMS');
 		return students.recordsets;
 	} catch (error) {
 		console.log(error);
