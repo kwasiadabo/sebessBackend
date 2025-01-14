@@ -5,7 +5,7 @@ const db = {
 	//server: '192.168.8.127',
 	port: 1433,
 	user: 'db_aa95d7_schoolsmsdb_admin',
-	password: 'Kaw3se4dr5$$1',
+	password: 'Kaw3se4dr5',
 	database: 'db_aa95d7_schoolsmsdb',
 	options: {
 		encrypt: false,
